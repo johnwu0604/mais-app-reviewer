@@ -105,18 +105,6 @@ mapping =  [
         }
     ]
 
-''' Creates and saves the relevant spreasheet '''
-def createSpreadsheet(position, applications):
-    sheet = applications.copy()
-    # drop irrelevant questions
-    for pos, questions in mapping.items():
-        if pos != position:
-            for q in questions:
-                sheet.drop([q], axis=1, inplace=True)
-    # drop all appliants not applying for specified position
-    sheet.drop(sheet.loc[(sheet['First Choice']!=position) & (sheet['Second Choice']!=position) & (sheet['Third Choice']!=position)].index, inplace=True)
-    sheet.to_csv('{}.csv'.format(position), index=False)
-
 ''' Gets the user input on the position they want to review '''
 def getPositionInput():
     text = '\nWhat position would you like to review (enter the number)? \n \n'
