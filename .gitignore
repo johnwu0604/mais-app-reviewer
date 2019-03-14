@@ -1,0 +1,4 @@
+# Do not commit confidential files
+
+*.csv
+resumes/*
